@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models 
 import uuid
-from django.db.models import Q
 from django.db.models.constraints import UniqueConstraint 
 from django.core.exceptions import ValidationError
 from django.core.validators import MinValueValidator
