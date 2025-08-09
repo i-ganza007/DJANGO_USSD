@@ -3,11 +3,11 @@ from django.db import models
 import uuid
 from django.db.models.constraints import UniqueConstraint 
 from django.core.exceptions import ValidationError
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator 
 
 def validate_phone(val):
-    if len(str(val)) != 10 :
-        raise ValidationError('Phone number too long or too short')
+    if len(str(val)) != 9 :
+        raise ValidationError('Phone number too long or too short or remove the leading 0')
     
 def validate_pin(val):
     if len(str(val)) != 4 :
@@ -15,6 +15,7 @@ def validate_pin(val):
 
 # Creating the USER model 
 class PrimaryUser(AbstractUser):
+    username = None
     class Currencies(models.TextChoices):
         rwf = ('RWF','RWF')
         usd = ('USD','USD')
@@ -30,6 +31,8 @@ class PrimaryUser(AbstractUser):
     phone = models.PositiveBigIntegerField(blank=False,null=False,validators=[validate_phone])
     pin = models.PositiveIntegerField(validators=[validate_pin])  
 
+    USERNAME_FIELD = 'code_name'
+    REQUIRED_FIELDS = []
 
     
     # def save(self,**kwargs):    
@@ -46,10 +49,7 @@ class PrimaryUser(AbstractUser):
         constraints = [UniqueConstraint(fields=['code_name','phone','pin'],name='No_same_name_and_phone_number_or_pin')
 
                     ]
-    
         
-
-
 class Transactions(models.Model):
     trans_id = models.UUIDField(null=False,blank=False,primary_key=True,default=uuid.uuid4)
     sender = models.ForeignKey(PrimaryUser,on_delete=models.CASCADE,related_name='sender_info')
