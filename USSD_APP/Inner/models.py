@@ -63,4 +63,4 @@ class Transactions(models.Model):
             raise ValidationError('Too much money')
 
     def __str__(self):
-        return f'{self.trans_id} from {self.sender.code_name} to {self.receiver}'
+        return f'{self.trans_id} from {self.sender.code_name} to {self.receiver} with {self.amount} on {self.date_created}'
