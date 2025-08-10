@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from models import PrimaryUser , Transactions
+from Inner.models import PrimaryUser , Transactions
 
 
 class UserSerializer(serializers.ModelSerializer):
