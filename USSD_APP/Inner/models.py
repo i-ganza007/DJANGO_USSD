@@ -43,7 +43,7 @@ class PrimaryUser(AbstractUser):
     def __str__(self):
         return f'{self.code_name} has {self.age} with {self.balance} reached on {self.phone}'
 
-            
+# When querying , using search related , don't use the manager on an instance of the model i.e objects but use the manager on the class model and then filter the model instances  
 
     class Meta:
         constraints = [UniqueConstraint(fields=['code_name','phone','pin'],name='No_same_name_and_phone_number_or_pin')
@@ -64,3 +64,4 @@ class Transactions(models.Model):
 
     def __str__(self):
         return f'{self.trans_id} from {self.sender.code_name} to {self.receiver} with {self.amount} on {self.date_created}'
+
