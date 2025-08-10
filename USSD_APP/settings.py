@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-x5$(dwn-pf!^$kmv&1*fo&61$4@fh0(zn704#=$fk0(d@k_lx!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['django-ussd.onrender.com']
 
 # Application definition
 
